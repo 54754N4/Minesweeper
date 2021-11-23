@@ -67,7 +67,7 @@ public class MSFPanel extends JPanel implements OnMineClickedListener, MouseList
 	
 	@Override
 	public void mineClicked() {
-		System.out.println("Mine selected. Lost");
+		JOptionPane.showMessageDialog(null, "Mine selected. Lost");
 	}
 	
 	@Override

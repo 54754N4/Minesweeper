@@ -175,13 +175,13 @@ public class Minesweeper {
 				Cell cell;
 				for (Point neighbour : neighboursOf(point)) {
 					cell = grid[neighbour.x][neighbour.y];
-					if (cell.mine && cell.flagged)
+					if (cell.flagged)
 						count--;
 				}
 				if (count == 0) {
 					for (Point neighbour : neighboursOf(point)) {
 						cell = grid[neighbour.x][neighbour.y];
-						if (!cell.mine && !cell.visible)
+						if (!cell.visible && !cell.flagged)
 							cell.reveal();
 					}
 				}
