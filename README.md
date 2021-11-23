@@ -8,8 +8,6 @@
 
 > Flag cell: CTRL + SPACE
 
-> Reveal neighbours: SHIFT + SPACE
-
 > Mark cell (type 1): Z
 
 > Mark cell (type 2): X
