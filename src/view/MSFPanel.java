@@ -200,7 +200,6 @@ public class MSFPanel extends JPanel implements OnMineClickedListener, MouseList
 		actionMap = getActionMap();
 		bind("SPACE", getKey(KeyEvent.VK_SPACE), new RevealAction());
 		bind("CTRL_SPACE", getKey(KeyEvent.VK_SPACE, ActionEvent.CTRL_MASK), new FlagAction());
-		bind("SHIFT_SPACE", getKey(KeyEvent.VK_SPACE, ActionEvent.SHIFT_MASK), new QuickRevealAction());
 		bind("Z", getKey(KeyEvent.VK_Z), new Mark1Action());
 		bind("X", getKey(KeyEvent.VK_X), new Mark2Action());
 		// directional bindings
@@ -291,17 +290,6 @@ public class MSFPanel extends JPanel implements OnMineClickedListener, MouseList
 		}	
 	}
 	
-	private class QuickRevealAction extends MSAction {
-		private static final long serialVersionUID = -5601575813199020159L;
-
-		@Override
-		protected void execute() {
-			Cell cell = ms.get(selected);
-			if (cell.isVisible()) 
-				cell.spreadFrom(selected); 
-		}
-	}
-	
 	private class HelpAction extends MSAction {
 		private static final long serialVersionUID = -1837589342349519008L;
 		private StringBuilder sb;
@@ -310,7 +298,6 @@ public class MSFPanel extends JPanel implements OnMineClickedListener, MouseList
 			sb = new StringBuilder();
 			add("Space", "Reveals cell");
 			add("Ctrl + Space", "Flags cell");
-			add("Shift + Space", "Reveals surrounding cells");
 			add("Ctrl + Z", "Mark type 1 cell");
 			add("Ctrl + X", "Mark type 2 cell");
 			add("Shift + Z", "New game");
@@ -318,6 +305,7 @@ public class MSFPanel extends JPanel implements OnMineClickedListener, MouseList
 			add("Shift + C", "Set size");
 			add("Shift + V", "Set block size");
 			add("H", "Show this help");
+			add("ESC", "Exit");
 		}
 		
 		private void add(String key, String msg) {

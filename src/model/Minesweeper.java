@@ -161,11 +161,31 @@ public class Minesweeper {
 		}
 		
 		public void reveal() {
-			visible = true;
-			if (isMine()) {
-				if (!isLost()) lost();
-			} else if (value == Value.EMPTY) spreadFrom(point);
-			else print = value.toString();
+			if (!visible) {
+				visible = true;
+				if (isMine()) {
+					if (!isLost()) 
+						lost();
+				} else if (value == Value.EMPTY) 
+					spreadFrom(point);
+				else 
+					print = value.toString();
+			} else {
+				int count = count();
+				Cell cell;
+				for (Point neighbour : neighboursOf(point)) {
+					cell = grid[neighbour.x][neighbour.y];
+					if (cell.mine && cell.flagged)
+						count--;
+				}
+				if (count == 0) {
+					for (Point neighbour : neighboursOf(point)) {
+						cell = grid[neighbour.x][neighbour.y];
+						if (!cell.mine && !cell.visible)
+							cell.reveal();
+					}
+				}
+			}
 		}
 		
 		public void spreadFrom(Point point) {
